@@ -80,11 +80,16 @@ class GenericClient : NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(url:String, method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(url:String, method: String, parameters: [String : AnyObject]?, jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
         /* 2/3. Build the URL and configure the request */
-        let urlString = url + method + GenericClient.escapedParameters(parameters)
+        var urlString = ""
+        if let parameters = parameters {
+            urlString = url + method + GenericClient.escapedParameters(parameters)
+        } else {
+            urlString = url + method
+        }
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
