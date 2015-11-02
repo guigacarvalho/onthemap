@@ -8,12 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		79075C501BDF44B000B617B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C4F1BDF44B000B617B7 /* AppDelegate.swift */; };
-		79075C521BDF44B000B617B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C511BDF44B000B617B7 /* ViewController.swift */; };
+		79075C521BDF44B000B617B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C511BDF44B000B617B7 /* LoginViewController.swift */; };
 		79075C551BDF44B000B617B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79075C531BDF44B000B617B7 /* Main.storyboard */; };
-		79075C571BDF44B000B617B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79075C561BDF44B000B617B7 /* Assets.xcassets */; };
 		79075C5A1BDF44B000B617B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79075C581BDF44B000B617B7 /* LaunchScreen.storyboard */; };
 		79075C651BDF44B000B617B7 /* on_the_mapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C641BDF44B000B617B7 /* on_the_mapTests.swift */; };
 		79075C701BDF44B000B617B7 /* on_the_mapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C6F1BDF44B000B617B7 /* on_the_mapUITests.swift */; };
+		79075C801BE05A6500B617B7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C7F1BE05A6500B617B7 /* MapViewController.swift */; };
+		79075C821BE05A7600B617B7 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C811BE05A7600B617B7 /* TabViewController.swift */; };
+		79075C841BE05A8600B617B7 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C831BE05A8600B617B7 /* LocationListViewController.swift */; };
+		79075C861BE08B8400B617B7 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C851BE08B8400B617B7 /* StudentLocation.swift */; };
+		79075C881BE08C2A00B617B7 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C871BE08C2A00B617B7 /* ParseClient.swift */; };
+		79075C8C1BE08CD900B617B7 /* ParseContstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C8B1BE08CD900B617B7 /* ParseContstants.swift */; };
+		79075C8E1BE08CFB00B617B7 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C8D1BE08CFB00B617B7 /* ParseConvenience.swift */; };
+		79075C901BE08F7200B617B7 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C8F1BE08F7200B617B7 /* Date.swift */; };
+		79075C941BE2E1E700B617B7 /* GenericClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C931BE2E1E700B617B7 /* GenericClient.swift */; };
+		79075C961BE2E48200B617B7 /* GenericConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79075C951BE2E48200B617B7 /* GenericConvenience.swift */; };
+		79AA084F1BE6D75400D7E3C7 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AA084C1BE6D75400D7E3C7 /* Bolts.framework */; };
+		79AA08501BE6D75400D7E3C7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AA084D1BE6D75400D7E3C7 /* FBSDKCoreKit.framework */; };
+		79AA08511BE6D75400D7E3C7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79AA084E1BE6D75400D7E3C7 /* FBSDKLoginKit.framework */; };
+		79EE37E61BE6EF6A003D87D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79EE37E51BE6EF6A003D87D8 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +49,8 @@
 /* Begin PBXFileReference section */
 		79075C4C1BDF44B000B617B7 /* on the map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "on the map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79075C4F1BDF44B000B617B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		79075C511BDF44B000B617B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		79075C511BDF44B000B617B7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		79075C541BDF44B000B617B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		79075C561BDF44B000B617B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79075C591BDF44B000B617B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79075C5B1BDF44B000B617B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79075C601BDF44B000B617B7 /* on the mapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "on the mapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +59,20 @@
 		79075C6B1BDF44B000B617B7 /* on the mapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "on the mapUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79075C6F1BDF44B000B617B7 /* on_the_mapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = on_the_mapUITests.swift; sourceTree = "<group>"; };
 		79075C711BDF44B000B617B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79075C7F1BE05A6500B617B7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		79075C811BE05A7600B617B7 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		79075C831BE05A8600B617B7 /* LocationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
+		79075C851BE08B8400B617B7 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		79075C871BE08C2A00B617B7 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		79075C8B1BE08CD900B617B7 /* ParseContstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseContstants.swift; sourceTree = "<group>"; };
+		79075C8D1BE08CFB00B617B7 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		79075C8F1BE08F7200B617B7 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		79075C931BE2E1E700B617B7 /* GenericClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericClient.swift; sourceTree = "<group>"; };
+		79075C951BE2E48200B617B7 /* GenericConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericConvenience.swift; sourceTree = "<group>"; };
+		79AA084C1BE6D75400D7E3C7 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Downloads/FacebookSDKs-iOS-20151026-2/Bolts.framework"; sourceTree = "<group>"; };
+		79AA084D1BE6D75400D7E3C7 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Downloads/FacebookSDKs-iOS-20151026-2/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		79AA084E1BE6D75400D7E3C7 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Downloads/FacebookSDKs-iOS-20151026-2/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		79EE37E51BE6EF6A003D87D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "on the map/Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79AA084F1BE6D75400D7E3C7 /* Bolts.framework in Frameworks */,
+				79AA08501BE6D75400D7E3C7 /* FBSDKCoreKit.framework in Frameworks */,
+				79AA08511BE6D75400D7E3C7 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +106,10 @@
 		79075C431BDF44B000B617B7 = {
 			isa = PBXGroup;
 			children = (
+				79EE37E51BE6EF6A003D87D8 /* Assets.xcassets */,
+				79AA084C1BE6D75400D7E3C7 /* Bolts.framework */,
+				79AA084D1BE6D75400D7E3C7 /* FBSDKCoreKit.framework */,
+				79AA084E1BE6D75400D7E3C7 /* FBSDKLoginKit.framework */,
 				79075C4E1BDF44B000B617B7 /* on the map */,
 				79075C631BDF44B000B617B7 /* on the mapTests */,
 				79075C6E1BDF44B000B617B7 /* on the mapUITests */,
@@ -97,10 +130,11 @@
 		79075C4E1BDF44B000B617B7 /* on the map */ = {
 			isa = PBXGroup;
 			children = (
+				79075C7E1BE0556700B617B7 /* Model */,
+				79075C7D1BE0555D00B617B7 /* Controller */,
 				79075C4F1BDF44B000B617B7 /* AppDelegate.swift */,
-				79075C511BDF44B000B617B7 /* ViewController.swift */,
+				79075C8F1BE08F7200B617B7 /* Date.swift */,
 				79075C531BDF44B000B617B7 /* Main.storyboard */,
-				79075C561BDF44B000B617B7 /* Assets.xcassets */,
 				79075C581BDF44B000B617B7 /* LaunchScreen.storyboard */,
 				79075C5B1BDF44B000B617B7 /* Info.plist */,
 			);
@@ -123,6 +157,38 @@
 				79075C711BDF44B000B617B7 /* Info.plist */,
 			);
 			path = "on the mapUITests";
+			sourceTree = "<group>";
+		};
+		79075C7D1BE0555D00B617B7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				79075C511BDF44B000B617B7 /* LoginViewController.swift */,
+				79075C7F1BE05A6500B617B7 /* MapViewController.swift */,
+				79075C811BE05A7600B617B7 /* TabViewController.swift */,
+				79075C831BE05A8600B617B7 /* LocationListViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		79075C7E1BE0556700B617B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79075C851BE08B8400B617B7 /* StudentLocation.swift */,
+				79075C931BE2E1E700B617B7 /* GenericClient.swift */,
+				79075C951BE2E48200B617B7 /* GenericConvenience.swift */,
+				79075C971BE2E4F100B617B7 /* Parse */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		79075C971BE2E4F100B617B7 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				79075C871BE08C2A00B617B7 /* ParseClient.swift */,
+				79075C8B1BE08CD900B617B7 /* ParseContstants.swift */,
+				79075C8D1BE08CFB00B617B7 /* ParseConvenience.swift */,
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79075C5A1BDF44B000B617B7 /* LaunchScreen.storyboard in Resources */,
-				79075C571BDF44B000B617B7 /* Assets.xcassets in Resources */,
+				79EE37E61BE6EF6A003D87D8 /* Assets.xcassets in Resources */,
 				79075C551BDF44B000B617B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,8 +322,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79075C521BDF44B000B617B7 /* ViewController.swift in Sources */,
+				79075C861BE08B8400B617B7 /* StudentLocation.swift in Sources */,
+				79075C821BE05A7600B617B7 /* TabViewController.swift in Sources */,
+				79075C881BE08C2A00B617B7 /* ParseClient.swift in Sources */,
+				79075C521BDF44B000B617B7 /* LoginViewController.swift in Sources */,
+				79075C801BE05A6500B617B7 /* MapViewController.swift in Sources */,
+				79075C8E1BE08CFB00B617B7 /* ParseConvenience.swift in Sources */,
+				79075C941BE2E1E700B617B7 /* GenericClient.swift in Sources */,
+				79075C841BE05A8600B617B7 /* LocationListViewController.swift in Sources */,
+				79075C901BE08F7200B617B7 /* Date.swift in Sources */,
+				79075C8C1BE08CD900B617B7 /* ParseContstants.swift in Sources */,
 				79075C501BDF44B000B617B7 /* AppDelegate.swift in Sources */,
+				79075C961BE2E48200B617B7 /* GenericConvenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,10 +475,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "~/Downloads/FacebookSDKs-iOS-20151026-2";
 				INFOPLIST_FILE = "on the map/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "gcarvalho.on-the-map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -410,10 +488,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "~/Downloads/FacebookSDKs-iOS-20151026-2";
 				INFOPLIST_FILE = "on the map/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "gcarvalho.on-the-map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -484,6 +564,7 @@
 				79075C761BDF44B000B617B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		79075C771BDF44B000B617B7 /* Build configuration list for PBXNativeTarget "on the mapTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +573,7 @@
 				79075C791BDF44B000B617B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		79075C7A1BDF44B000B617B7 /* Build configuration list for PBXNativeTarget "on the mapUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +582,7 @@
 				79075C7C1BDF44B000B617B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
