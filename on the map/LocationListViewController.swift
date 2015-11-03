@@ -11,6 +11,8 @@ import UIKit
 class LocationListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var names:[String] = []
     var locations:[String] = []
+    var urls:[String] = []
+    
     
     @IBOutlet weak var locationsTableView: UITableView!
     @IBAction func logoutTapped(sender: AnyObject) {
@@ -27,9 +29,10 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
                 for student in result {
                     let studentLocation = "\(student.latitude), \(student.longitude)"
                     let name = "\(student.firstName) \(student.lastName)"
+                    let link = "\(student.mediaURL)"
                     self.names.append(name)
                     self.locations.append(studentLocation)
-                    
+                    self.urls.append(link)
                 }
             }
             dispatch_async(dispatch_get_main_queue()) {
@@ -55,8 +58,18 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("You selected cell #\(indexPath.row)!")
+        let url = NSURL(string: self.urls[indexPath.row])
+        if let url = url {
+            UIApplication.sharedApplication().openURL(url)
+        } else {
+            let alertController = UIAlertController(title: "Oops..", message: "No valid url found for this student.", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                alertController.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
-    
+
 }
 
