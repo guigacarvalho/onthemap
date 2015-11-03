@@ -29,7 +29,11 @@ extension GenericClient {
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandler(success: false, results: nil, errorString: "Login Failed (Session ID). \(error)")
+                if (error.domain == "statusCode") {
+                    completionHandler(success: false, results: nil, errorString: "Are you sure yo typed the right info?")
+                } else {
+                    completionHandler(success: false, results: nil, errorString: "You network connection is having a hard time..")
+                }
             } else {
                 var results : [String:AnyObject] = [
                     "session":"",
@@ -48,7 +52,7 @@ extension GenericClient {
                     }
                     completionHandler(success: true, results: results, errorString: nil)
                 } else {
-                    print("Could not find sessionID) in \(result)")
+                    print("Could not find sessionID in \(result)")
                     completionHandler(success: false, results: nil, errorString: "Login Failed (Session ID).")
                 }
             }
@@ -71,7 +75,11 @@ extension GenericClient {
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandler(success: false, results: nil, errorString: "Login Failed (Session ID). \(error)")
+                if (error.domain == "statusCode") {
+                    completionHandler(success: false, results: nil, errorString: "Are you sure yo typed the right info?")
+                } else {
+                    completionHandler(success: false, results: nil, errorString: "You network connection is having a hard time..")
+                }
             } else {
                 var results : [String:AnyObject] = [
                     "session":"",
@@ -90,8 +98,8 @@ extension GenericClient {
                     }
                     completionHandler(success: true, results: results, errorString: nil)
                 } else {
-                    print("Could not find sessionID) in \(result)")
-                    completionHandler(success: false, results: nil, errorString: "Login Failed (Session ID).")
+                    print("Could not find required info in \(result)")
+                    completionHandler(success: false, results: nil, errorString: "Login Failed.")
                 }
             }
         }

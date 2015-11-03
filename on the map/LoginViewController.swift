@@ -12,14 +12,10 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var msgLabel: UILabel!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    override func viewWillAppear(animated: Bool) {
-        msgLabel.hidden = true
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,13 +26,17 @@ class LoginViewController: UIViewController {
             GenericClient.self().getSessionIDwithFB(accessToken) { (success, results, errorString) in
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.msgLabel.text = "Yeah!"
                         let tabBarCtrl = self.storyboard?.instantiateViewControllerWithIdentifier("tabBarCtrl") as! TabViewController
                         self.presentViewController(tabBarCtrl, animated: true, completion: nil)
                     })
                 } else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.msgLabel.text = "\(errorString)"
+                        let alertController = UIAlertController(title: "Oops..", message: "\(errorString!)", preferredStyle: .Alert)
+                        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                            alertController.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        alertController.addAction(OKAction)
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     })
                 }
             }            
@@ -63,19 +63,21 @@ class LoginViewController: UIViewController {
             "username": self.loginField.text,
             "password": self.passwordField.text
         ]
-        self.msgLabel.text = ""
-        self.msgLabel.hidden = false
         
         GenericClient.self().getSessionID(methodParameters) { (success, results, errorString) in
             if success {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.msgLabel.text = "Yeah!"
                         let tabBarCtrl = self.storyboard?.instantiateViewControllerWithIdentifier("tabBarCtrl") as! TabViewController
                         self.presentViewController(tabBarCtrl, animated: true, completion: nil)
                     })
             } else {
                     dispatch_async(dispatch_get_main_queue(), {
-                            self.msgLabel.text = "\(errorString)"
+                        let alertController = UIAlertController(title: "Oops..", message: "\(errorString!)", preferredStyle: .Alert)
+                        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                            alertController.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        alertController.addAction(OKAction)
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     })
             }
         }

@@ -9,7 +9,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" customClass="LoginViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" customClass="LoginViewController" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -41,16 +41,6 @@
                                     <action selector="loginTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gWn-1w-doM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zh9-vD-juN">
-                                <rect key="frame" x="279" y="452" width="42" height="21"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="qGF-yE-3AZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeG-3Y-BeP">
                                 <rect key="frame" x="189" y="414" width="223" height="30"/>
                                 <animations/>
@@ -69,8 +59,6 @@
                             <constraint firstItem="Pb2-qj-V9x" firstAttribute="top" secondItem="ZMb-Bd-TtH" secondAttribute="bottom" constant="23" id="E95-PK-Omv"/>
                             <constraint firstItem="YeG-3Y-BeP" firstAttribute="leading" secondItem="Xg0-rd-KvB" secondAttribute="leading" constant="-92" id="Krf-3I-UZv"/>
                             <constraint firstItem="Pb2-qj-V9x" firstAttribute="leading" secondItem="ZMb-Bd-TtH" secondAttribute="leading" id="VOL-xf-xgN"/>
-                            <constraint firstItem="zh9-vD-juN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Whh-ax-707"/>
-                            <constraint firstItem="zh9-vD-juN" firstAttribute="top" secondItem="YeG-3Y-BeP" secondAttribute="bottom" constant="8" id="cfh-lA-5V4"/>
                             <constraint firstItem="YeG-3Y-BeP" firstAttribute="top" secondItem="Xg0-rd-KvB" secondAttribute="bottom" constant="8" id="fLo-dC-o3i"/>
                             <constraint firstItem="Pb2-qj-V9x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="he5-1g-EkC"/>
                             <constraint firstItem="YeG-3Y-BeP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q2S-V1-dzX"/>
@@ -86,7 +74,6 @@
                     <connections>
                         <outlet property="loginBtn" destination="Xg0-rd-KvB" id="f5r-rI-90n"/>
                         <outlet property="loginField" destination="ZMb-Bd-TtH" id="Dsv-kb-Iqp"/>
-                        <outlet property="msgLabel" destination="zh9-vD-juN" id="iJZ-aB-TQA"/>
                         <outlet property="passwordField" destination="Pb2-qj-V9x" id="G17-dz-XRf"/>
                     </connections>
                 </viewController>
@@ -117,7 +104,7 @@
         <!--List-->
         <scene sceneID="BE5-05-gKX">
             <objects>
-                <viewController title="List" id="BAP-bf-uUn" customClass="LocationListViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="List" id="BAP-bf-uUn" customClass="LocationListViewController" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VpJ-Aa-lnN"/>
                         <viewControllerLayoutGuide type="bottom" id="02P-Fg-I3l"/>
@@ -135,11 +122,11 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w66-ws-G9K" id="YIS-sb-Chi">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n0z-m0-AnK">
-                                                    <rect key="frame" x="57" y="6" width="31.5" height="19.5"/>
+                                                    <rect key="frame" x="57" y="5" width="32" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -147,7 +134,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Q5-e3-GUj">
-                                                    <rect key="frame" x="57" y="25.5" width="40.5" height="13.5"/>
+                                                    <rect key="frame" x="57" y="25" width="41" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -155,7 +142,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="pin" id="Ruj-N9-rU0">
-                                                    <rect key="frame" x="15" y="0.0" width="27" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="27" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </imageView>
@@ -224,7 +211,7 @@
         <!--On the Map-->
         <scene sceneID="R8d-jS-PG3">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarCtrl" title="On the Map" id="pnn-ps-jhc" customClass="TabViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarCtrl" title="On the Map" id="pnn-ps-jhc" customClass="TabViewController" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ls5-Wz-JDX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -244,7 +231,7 @@
         <!--On the Map-->
         <scene sceneID="Z1p-T7-7bY">
             <objects>
-                <viewController id="j14-gM-Hn6" customClass="MapViewController" customModule="on_the_map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="j14-gM-Hn6" customClass="MapViewController" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hz3-Os-dee"/>
                         <viewControllerLayoutGuide type="bottom" id="xGi-DL-JXp"/>

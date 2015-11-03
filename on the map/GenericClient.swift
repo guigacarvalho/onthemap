@@ -105,6 +105,7 @@ class GenericClient : NSObject {
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
+                completionHandler(result: nil, error: NSError(domain: "connectionReset", code: 1, userInfo: nil))
                 return
             }
             
@@ -116,11 +117,11 @@ class GenericClient : NSObject {
                     
                 } else if let response = response {
                     print("Your request returned an invalid response! Response: \(response)!")
-                    completionHandler(result: nil, error: NSError(domain: "invalidResponse", code: 1, userInfo: nil))
+                    completionHandler(result: nil, error: NSError(domain: "connectionReset", code: 1, userInfo: nil))
 
                 } else {
-                    completionHandler(result: nil, error: NSError(domain: "invalidResponse", code: 1, userInfo: nil))
                     print("Your request returned an invalid response!")
+                    completionHandler(result: nil, error: NSError(domain: "invalidResponse", code: 1, userInfo: nil))
                 }
                 return
             }
