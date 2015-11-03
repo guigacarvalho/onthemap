@@ -28,6 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     let dropPin = MKPointAnnotation()
                     dropPin.coordinate = studentLocation
                     dropPin.title = "\(student.firstName) \(student.lastName)"
+                    dropPin.subtitle = "\(student.mediaURL)"
                     self.mapView.addAnnotation(dropPin)
                 }
             }
@@ -38,12 +39,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if (annotation is MKUserLocation) {
             return nil
         }
+            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+            annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            annotationView.canShowCallout = true
+            annotationView.animatesDrop = true
+            annotationView.pinTintColor = UIColor.blueColor()
+
         
-        let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("CustomAnnotation") as MKAnnotationView!
         return annotationView
 
     }
-    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! MKPointAnnotation
+        let url = NSURL(string: (annotation.subtitle)!)
+        UIApplication.sharedApplication().openURL(url!)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
