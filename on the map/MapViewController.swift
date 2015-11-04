@@ -11,6 +11,10 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    @IBAction func postInfo(sender: AnyObject) {
+        let infoPosting = self.storyboard?.instantiateViewControllerWithIdentifier("infoPostingCtrl") as! InfoPostingViewController
+        self.presentViewController(infoPosting, animated: true, completion: nil)
+    }
     @IBAction func logoutTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

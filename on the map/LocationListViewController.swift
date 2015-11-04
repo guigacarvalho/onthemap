@@ -42,6 +42,10 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
 
     }
 
+    @IBAction func infoPosting(sender: AnyObject) {
+        let infoPosting = self.storyboard?.instantiateViewControllerWithIdentifier("infoPostingCtrl") as! InfoPostingViewController
+        self.presentViewController(infoPosting, animated: true, completion: nil)
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.names.count
