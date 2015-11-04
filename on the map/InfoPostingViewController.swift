@@ -8,43 +8,142 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 
-class InfoPostingViewController: UIViewController {
+class InfoPostingViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     @IBOutlet weak var url: UITextField!
     @IBOutlet weak var name: UITextField!
-        @IBOutlet weak var location: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var location: UITextField!
     @IBOutlet weak var mapview: MKMapView!
+    let manager = CLLocationManager()
+    var cllocation = CLLocation()
+    
+    
+    @IBAction func openURL(sender: AnyObject) {
+        if let url = self.url.text {
+             if let url = NSURL(string: url) {
+                if "\(url)" != "" {
+                    let actualUrl = url
+                    UIApplication.sharedApplication().openURL(actualUrl)
+                } else {
+                    let alertController = UIAlertController(title: "Oops..", message: "Please type a valid URL", preferredStyle: .Alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                        alertController.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    alertController.addAction(OKAction)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.manager.delegate = self
+        self.mapview.delegate = self
+        self.manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        manager.startUpdatingLocation()
+        self.activityView.stopAnimating()
+        
+    }
+    
     @IBAction func cancelTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func postInfo(sender: AnyObject) {
-//        display activity indicator
+        // display activity indicator
+        self.activityView.startAnimating()
+
+        // execute geocoding
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(self.location.text!) { placemarks, error in
         
+            
+            if let placemarks = placemarks {
+                self.cllocation = (placemarks[0].location)!
+
+                self.mapview.hidden = false
+                let studentLocation = CLLocationCoordinate2DMake(self.cllocation.coordinate.latitude, self.cllocation.coordinate.longitude)
+//                print(cllocation.coordinate.latitude)
+//                print(cllocation.coordinate.longitude)
+                let dropPin = MKPointAnnotation()
+                dropPin.coordinate = studentLocation
+                self.centerMapOnLocation(self.cllocation)
+                self.mapview.addAnnotation(dropPin)
+            }
+            if (error != nil) {
+                let alertController = UIAlertController(title: "Oops..", message: "Location not found", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            self.activityView.stopAnimating()
+
+        }
         
+        // post information
+        let key = Int(arc4random_uniform(3456789)) + 1123455
+        let info : [String:AnyObject] = [
+            "uniqueKey": key,
+            "firstName": name.text!,
+            "lastName": lastName.text!,
+            "mapString": location.text!,
+            "mediaURL": url.text!,
+            "latitude": self.cllocation.coordinate.latitude,
+            "longitude": self.cllocation.coordinate.longitude
+        ]
+
         
-//        execute geocoding
-        
-        
-        
-        
-//        post information
-        ParseClient.sharedInstance().getStudentLocations() {
+        ParseClient.sharedInstance().postStudentLocation(info) {
             result, error in
             if let result = result {
-                for student in result {
-                    let studentLocation = CLLocationCoordinate2DMake(student.latitude, student.longitude)
-                    let dropPin = MKPointAnnotation()
-                    dropPin.coordinate = studentLocation
-                    dropPin.title = "\(student.firstName) \(student.lastName)"
-                    dropPin.subtitle = "\(student.mediaURL)"
-                    self.mapview.addAnnotation(dropPin)
+                let alertController = UIAlertController(title: "Location Posted", message: "at \(result)", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    alertController.dismissViewControllerAnimated(true, completion: nil)
                 }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            if error != nil {
+                let alertController = UIAlertController(title: "Oops..", message: "Something went wrogit add ng", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
             }
         }
+        
+    }
+    
+    let regionRadius: CLLocationDistance = 1000
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+            regionRadius * 2.0, regionRadius * 2.0)
+        mapview.setRegion(coordinateRegion, animated: true)
+    }
+
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if (annotation is MKUserLocation) {
+            return nil
+        }
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        annotationView.animatesDrop = true
+        annotationView.pinTintColor = UIColor.blueColor()
+        return annotationView
         
     }
 }
