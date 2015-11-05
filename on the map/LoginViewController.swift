@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import UIView_Shake
 
 class LoginViewController: UIViewController {
 
@@ -36,6 +37,7 @@ class LoginViewController: UIViewController {
                             alertController.dismissViewControllerAnimated(true, completion: nil)
                         }
                         alertController.addAction(OKAction)
+                        alertController.view.shake()
                         self.presentViewController(alertController, animated: true, completion: nil)
                     })
                 }
@@ -77,6 +79,7 @@ class LoginViewController: UIViewController {
                             alertController.dismissViewControllerAnimated(true, completion: nil)
                         }
                         alertController.addAction(OKAction)
+                        alertController.view.shake()
                         self.presentViewController(alertController, animated: true, completion: nil)
                     })
             }
