@@ -37,12 +37,12 @@ struct StudentLocation {
     }
     
     static func locationsFromResults(results: [[String : AnyObject]]) -> [StudentLocation] {
-        var movies = [StudentLocation]()
+        var students = [StudentLocation]()
         
         for result in results {
-            movies.append(StudentLocation(dictionary: result))
+            students.append(StudentLocation(dictionary: result))
         }
         
-        return movies
+        return students
     }
 }
