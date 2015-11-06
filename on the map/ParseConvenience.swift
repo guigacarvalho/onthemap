@@ -43,7 +43,7 @@ extension ParseClient {
     func postStudentLocation(jsonBody:[String:AnyObject], completionHandler: (result: String?, error: NSError?) -> Void) {
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = ["limit":"100"]
+        let parameters = ["limit":"100", "order": "-updatedAt"]
         let jsonBody = jsonBody
         let mutableMethod : String = "StudentLocation"
 
