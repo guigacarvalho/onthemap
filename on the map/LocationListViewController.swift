@@ -12,15 +12,14 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
     var names:[String] = []
     var locations:[String] = []
     var urls:[String] = []
-    
-    
+    var appDelegate: AppDelegate!
     @IBOutlet weak var locationsTableView: UITableView!
-    @IBAction func logoutTapped(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     }
     override func viewWillAppear(animated: Bool) {
         ParseClient.sharedInstance().getStudentLocations() {
@@ -39,12 +38,6 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
                 self.locationsTableView.reloadData()
             }
         }
-
-    }
-
-    @IBAction func infoPosting(sender: AnyObject) {
-        let infoPosting = self.storyboard?.instantiateViewControllerWithIdentifier("infoPostingCtrl") as! InfoPostingViewController
-        self.presentViewController(infoPosting, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,6 +66,19 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
             alertController.addAction(OKAction)
             self.presentViewController(alertController, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func logoutTapped(sender: AnyObject) {
+        GenericClient.self().deleteSessionID(appDelegate.sessionID) { success, results, errorString in
+            if success {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+
+    @IBAction func infoPosting(sender: AnyObject) {
+        let infoPosting = self.storyboard?.instantiateViewControllerWithIdentifier("infoPostingCtrl") as! InfoPostingViewController
+        self.presentViewController(infoPosting, animated: true, completion: nil)
     }
 
 }

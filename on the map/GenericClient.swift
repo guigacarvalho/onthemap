@@ -118,7 +118,7 @@ class GenericClient : NSObject {
                 } else if let response = response {
                     print("Your request returned an invalid response! Response: \(response)!")
                     completionHandler(result: nil, error: NSError(domain: "connectionReset", code: 1, userInfo: nil))
-
+                    
                 } else {
                     print("Your request returned an invalid response!")
                     completionHandler(result: nil, error: NSError(domain: "invalidResponse", code: 1, userInfo: nil))
@@ -126,7 +126,7 @@ class GenericClient : NSObject {
                 return
             }
             
-
+            
             /* GUARD: Was there any data returned? */
             guard let data = data else {
                 print("No data was returned by the request!")
@@ -135,6 +135,78 @@ class GenericClient : NSObject {
             
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
             
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            GenericClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
+        }
+        
+        /* 7. Start the request */
+        task.resume()
+        
+        return task
+    }
+    
+    // MARK: DELETE
+    
+    func taskForDELETEMethod(url:String, method: String, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        
+        /* 1. Set the parameters */
+        /* 2/3. Build the URL and configure the request */
+        let urlString = url + method
+
+        let url = NSURL(string: urlString)!
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Cookie setup
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies! as [NSHTTPCookie] {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+
+        
+        /* 4. Make the request */
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                print("There was an error with your request: \(error)")
+                completionHandler(result: nil, error: NSError(domain: "connectionReset", code: 1, userInfo: nil))
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                if let response = response as? NSHTTPURLResponse {
+                    print("Your request returned an invalid response! Status code: \(response.statusCode) Response: \(response)!")
+                    completionHandler(result: nil, error: NSError(domain: "statusCode", code: 1, userInfo: nil))
+                    
+                } else if let response = response {
+                    print("Your request returned an invalid response! Response: \(response)!")
+                    completionHandler(result: nil, error: NSError(domain: "connectionReset", code: 1, userInfo: nil))
+                    
+                } else {
+                    print("Your request returned an invalid response!")
+                    completionHandler(result: nil, error: NSError(domain: "invalidResponse", code: 1, userInfo: nil))
+                }
+                return
+            }
+            
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                print("No data was returned by the request!")
+                return
+            }
+            
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             GenericClient.parseJSONWithCompletionHandler(newData, completionHandler: completionHandler)
         }

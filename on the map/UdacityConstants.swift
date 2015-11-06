@@ -6,4 +6,13 @@
 //  Copyright © 2015 Guilherme Carvalho. All rights reserved.
 //
 
-import Foundation
+extension GenericClient {
+    
+    // MARK: Constants
+    struct UdacityConstants {
+        
+        // MARK: URLs
+        static let BaseURLSecure : String = "https://www.udacity.com/api/"
+    }
+    
+}

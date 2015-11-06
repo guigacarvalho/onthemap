@@ -25,7 +25,7 @@ extension GenericClient {
         ]
         
         /* 2. Make the request */
-        taskForPOSTMethod("https://www.udacity.com/api/", method: "session", parameters: parameters, jsonBody: jsonBody) { result, error in
+        taskForPOSTMethod(UdacityConstants.BaseURLSecure, method: "session", parameters: parameters, jsonBody: jsonBody) { result, error in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -71,7 +71,7 @@ extension GenericClient {
         ]
         
         /* 2. Make the request */
-        taskForPOSTMethod("https://www.udacity.com/api/", method: "session", parameters: nil, jsonBody: jsonBody) { result, error in
+        taskForPOSTMethod(UdacityConstants.BaseURLSecure, method: "session", parameters: nil, jsonBody: jsonBody) { result, error in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
@@ -105,4 +105,40 @@ extension GenericClient {
         }
         
     }
+
+    func deleteSessionID(accessToken:String, completionHandler: (success: Bool, results: [String: AnyObject]?, errorString: String?) -> Void) {
+        
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        /* 2. Make the request */
+        taskForDELETEMethod(UdacityConstants.BaseURLSecure, method: "session") { result, error in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                if (error.domain == "statusCode") {
+                    completionHandler(success: false, results: nil, errorString: "Are you sure yo typed the right info?")
+                } else {
+                    completionHandler(success: false, results: nil, errorString: "You network connection is having a hard time..")
+                }
+            } else {
+                var results : [String:AnyObject] = [
+                    "session":"",
+                    "user":""
+                ]
+                if let resultsDict = result as? [String: AnyObject] {
+                    if let sessionDict = resultsDict["session"] as? [String: AnyObject] {
+                        if let sessionID = sessionDict["id"] as? String {
+                            results["session"] = sessionID
+                        }
+                    }
+                    completionHandler(success: true, results: results, errorString: nil)
+                } else {
+                    print("Could not find required info in \(result)")
+                    completionHandler(success: false, results: nil, errorString: "Login Failed.")
+                }
+            }
+        }
+        
+    }
+
 }

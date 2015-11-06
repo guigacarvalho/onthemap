@@ -16,16 +16,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    var appDelegate: AppDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
             GenericClient.self().getSessionIDwithFB(accessToken) { (success, results, errorString) in
                 if success {
+                    self.appDelegate.sessionID = results!["session"] as! String
                     dispatch_async(dispatch_get_main_queue(), {
                         let tabBarCtrl = self.storyboard?.instantiateViewControllerWithIdentifier("tabBarCtrl") as! TabViewController
                         self.presentViewController(tabBarCtrl, animated: true, completion: nil)

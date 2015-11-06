@@ -10,19 +10,20 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-    
-    @IBAction func postInfo(sender: AnyObject) {
-        let infoPosting = self.storyboard?.instantiateViewControllerWithIdentifier("infoPostingCtrl") as! InfoPostingViewController
-        self.presentViewController(infoPosting, animated: true, completion: nil)
-    }
-    @IBAction func logoutTapped(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+
+    var appDelegate:AppDelegate!
     @IBOutlet weak var mapView: MKMapView!
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.mapView.delegate = self
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         ParseClient.sharedInstance().getStudentLocations() {
             result, error in
@@ -43,26 +44,35 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         if (annotation is MKUserLocation) {
             return nil
         }
-            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-            annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            annotationView.canShowCallout = true
-            annotationView.animatesDrop = true
-            annotationView.pinTintColor = UIColor.blueColor()
-
+        
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        annotationView.canShowCallout = true
+        annotationView.animatesDrop = true
+        annotationView.pinTintColor = UIColor.blueColor()
         
         return annotationView
-
+        
     }
+    
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let annotation = view.annotation as! MKPointAnnotation
         let url = NSURL(string: (annotation.subtitle)!)
         UIApplication.sharedApplication().openURL(url!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func postInfo(sender: AnyObject) {
+        let infoPosting = self.storyboard?.instantiateViewControllerWithIdentifier("infoPostingCtrl") as! InfoPostingViewController
+        self.presentViewController(infoPosting, animated: true, completion: nil)
     }
+    @IBAction func logoutTapped(sender: AnyObject) {
+        GenericClient.self().deleteSessionID(appDelegate.sessionID) { success, results, errorString in
+            if success {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+
     
     
 }
