@@ -24,7 +24,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         self.mapView.delegate = self
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
+        print("here")
         ParseClient.sharedInstance().getStudentLocations() {
             result, error in
             if let result = result {
@@ -36,6 +36,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     dropPin.subtitle = "\(student.mediaURL)"
                     self.mapView.addAnnotation(dropPin)
                 }
+            }
+            else {
+                let alertController = UIAlertController(title: "Oops..", message: "Something went wrong.", preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
     }

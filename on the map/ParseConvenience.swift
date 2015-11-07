@@ -28,7 +28,6 @@ extension ParseClient {
             if let error = error {
                 completionHandler(result: nil, error: error)
             } else {
-                
                 if let results = JSONResult["results"] as? [[String : AnyObject]] {
                     let studentLocations = StudentLocation.locationsFromResults(results)
                     completionHandler(result: studentLocations, error: nil)
