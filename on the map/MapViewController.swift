@@ -24,7 +24,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         self.mapView.delegate = self
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        print("here")
         ParseClient.sharedInstance().getStudentLocations() {
             result, error in
             if let result = result {
@@ -43,7 +42,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     alertController.dismissViewControllerAnimated(true, completion: nil)
                 }
                 alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
             }
         }
     }
@@ -76,7 +77,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBAction func logoutTapped(sender: AnyObject) {
         GenericClient.self().deleteSessionID(appDelegate.sessionID) { success, results, errorString in
             if success {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
         }
     }

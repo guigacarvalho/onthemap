@@ -74,10 +74,14 @@ class InfoPostingViewController: UIViewController, CLLocationManagerDelegate, MK
             if (error != nil) {
                 let alertController = UIAlertController(title: "Oops..", message: "Location not found", preferredStyle: .Alert)
                 let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        alertController.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
                 alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
             }
             self.activityView.stopAnimating()
             
@@ -96,7 +100,9 @@ class InfoPostingViewController: UIViewController, CLLocationManagerDelegate, MK
                         alertController.dismissViewControllerAnimated(true, completion: nil)
                     }
                     alertController.addAction(OKAction)
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
                 }
             }
         }
@@ -141,8 +147,10 @@ class InfoPostingViewController: UIViewController, CLLocationManagerDelegate, MK
                     alertController.dismissViewControllerAnimated(true, completion: nil)
                 }
                 alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
             if error != nil {
                 let alertController = UIAlertController(title: "Oops..", message: "Something went wrong.", preferredStyle: .Alert)
@@ -150,7 +158,9 @@ class InfoPostingViewController: UIViewController, CLLocationManagerDelegate, MK
                     alertController.dismissViewControllerAnimated(true, completion: nil)
                 }
                 alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
                 
             }
         }

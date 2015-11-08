@@ -71,7 +71,9 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func logoutTapped(sender: AnyObject) {
         GenericClient.self().deleteSessionID(appDelegate.sessionID) { success, results, errorString in
             if success {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
         }
     }
