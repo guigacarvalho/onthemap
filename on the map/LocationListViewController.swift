@@ -24,6 +24,15 @@ class LocationListViewController: UIViewController, UITableViewDelegate, UITable
     override func viewWillAppear(animated: Bool) {
         ParseClient.sharedInstance().getStudentLocations() {
             result, error in
+            if let error = error {
+                let alertController = UIAlertController(title: "Oops..", message: error.localizedDescription, preferredStyle: .Alert)
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                return
+            }
             if let result = result {
                 for student in result {
                     let studentLocation = "\(student.latitude), \(student.longitude)"

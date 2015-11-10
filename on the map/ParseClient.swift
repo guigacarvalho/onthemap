@@ -47,6 +47,7 @@ class ParseClient : NSObject {
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
+                completionHandler(result: nil, error: NSError(domain: "ConnectionFailure", code: 1, userInfo: [NSLocalizedDescriptionKey: "Internet connection apeears to be offline"]))
                 return
             }
             /* GUARD: Did we get a successful 2XX response? */
@@ -104,6 +105,7 @@ class ParseClient : NSObject {
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
+                completionHandler(result: nil, error: NSError(domain: "ConnectionFailure", code: 1, userInfo: [NSLocalizedDescriptionKey: "Internet connection apeears to be offline"]))
                 return
             }
             
