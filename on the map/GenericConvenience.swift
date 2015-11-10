@@ -29,7 +29,7 @@ extension GenericClient {
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {
-                if (error.domain == "statusCode") {
+                if (error.domain == "StatusCodeFailure") {
                     completionHandler(success: false, results: nil, errorString: "Are you sure yo typed the right info?")
                 } else {
                     completionHandler(success: false, results: nil, errorString: "You network connection is having a hard time..")
