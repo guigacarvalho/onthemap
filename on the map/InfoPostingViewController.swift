@@ -31,7 +31,9 @@ class InfoPostingViewController: UIViewController, CLLocationManagerDelegate, MK
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         activityView.stopAnimating()
-        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        name.text = appDelegate.first_name
+        lastName.text = appDelegate.last_name
     }
     
     func centerMapOnLocation(location: CLLocation) {
